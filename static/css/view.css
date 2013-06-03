@@ -1,0 +1,83 @@
+html {
+  background: url('/static/img/corkboard.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+#map-canvas {
+    -moz-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 black;
+    -webkit-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+    float: left;
+    margin: 100px 50px;
+    width: 600px;
+    height: 600px;
+}
+
+.notepad {
+    -moz-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 black;
+    -webkit-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+    background-color: #fff;
+    float: left;
+    margin: 100px 20px 60px 20px;
+    padding: 0;
+}
+
+li {
+    padding: 10px 0;
+    width: 650px;
+    border: 1px solid #b8e8e8;
+    float: left;
+    clear: left;
+    list-style: none;
+}
+
+li span {
+    float: left;
+    padding: 5px 15px;
+    position: relative;
+    text-align: left;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#events li span.date{
+    width: 100px;
+}
+
+#events li span.time{
+    width: 100px;
+}
+
+#events li span.summary{
+    width: 350px;
+}
+
+li.both {
+    color: black;
+    font-weight: bold;
+}
+
+li.tina {
+    color: #87268c;
+}
+
+li.eric {
+    color: #ff8f00;
+}
+
+#tasks li span.due{
+    width: 100px;
+}
+
+#tasks li span.title{
+    width: 400px;
+}
