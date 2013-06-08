@@ -13,11 +13,18 @@
           <script src="/static/js/gapi.js"></script>
   </head>
   <body>
-    <div id="map-canvas"></div>
-    <ul class="notepad" id="events">
-    </ul>
-    <ul class="notepad" id="tasks">
-    </ul>
+    <div id="left-col" class="column">
+      <div id="webcam" class="dash-item">
+        <img src="" />
+      </div>
+      <ul class="notepad dash-item" id="events">
+      </ul>
+    </div>
+    <div id="right-col" class="column">
+      <div id="map-canvas" class="dash-item"></div>
+      <ul class="notepad dash-item" id="tasks">
+      </ul>
+    </div>
   </body>
 </html>
 

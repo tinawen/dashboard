@@ -50,12 +50,21 @@ function get_tasks() {
     });
 }
 
+function take_picture() {
+    $.getJSON($SCRIPT_ROOT + '/picture', {
+    }, function(file_name) {
+        $('#webcam img').attr('src', file_name);
+    });
+}
+
 function reload() {
     locate();
     get_events();
     get_tasks();
+    take_picture();
     console.log("reloading...");
-    setTimeout(function(){reload()}, 1800000);
+    // refresh every 5 mins
+    setTimeout(function(){reload()}, 300000);
 }
 
 google.maps.event.addDomListener(window, 'load', reload);

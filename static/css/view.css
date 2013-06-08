@@ -8,26 +8,59 @@ html {
 
 body {
     font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+.column {
+    display: inline;
+    width: 49%;
+}
+
+#left-col {
+    float: left;
+}
+
+#right-col {
+    float: right;
+}
+
+.dash-item {
+    -moz-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 black;
+    -webkit-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
+}
+
+#webcam {
+    float: left;
+    margin: 50px 20px 20px 50px;
+    height: 480px;
+    width: 640px;
+}
+
+#webcam img {
+    height: 480px;
+    width: 640px;
 }
 
 #map-canvas {
-    -moz-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 black;
-    -webkit-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
-    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
-    float: left;
-    margin: 100px 50px;
-    width: 600px;
-    height: 600px;
+    float: right;
+    margin: 25px 100px 20px 50px;
+    width: 500px;
+    height: 500px;
 }
 
 .notepad {
-    -moz-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 black;
-    -webkit-box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
-    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.8), inset 0 0 0 #000;
     background-color: #fff;
-    float: left;
-    margin: 100px 20px 60px 20px;
+    margin: 20px 20px 90px 20px;
     padding: 0;
+}
+
+#tasks {
+    float: right;
+}
+
+#events {
+    float: left;
 }
 
 li {
