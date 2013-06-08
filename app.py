@@ -1,4 +1,5 @@
 from flask import Flask, render_template
+from werkzeug.contrib.fixers import ProxyFix
 from gapi import (get_latitude_info,
                   get_calendar_info,
                   get_tasks_info)
@@ -25,6 +26,7 @@ def tasks():
 def picture():
     return take_picture()
 
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
 if __name__ == "__main__":
-    app.debug = True
-    app.run(host='0.0.0.0')
+    app.run()
