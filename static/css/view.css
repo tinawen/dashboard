@@ -33,25 +33,25 @@ body {
 #webcam {
     float: left;
     margin: 50px 20px 20px 50px;
-    height: 480px;
-    width: 640px;
+    height: 384px;
+    width: 512px;
 }
 
 #webcam img {
-    height: 480px;
-    width: 640px;
+    height: 384px;
+    width: 512px;
 }
 
 #map-canvas {
     float: right;
     margin: 25px 100px 20px 50px;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
 }
 
 .notepad {
     background-color: #fff;
-    margin: 20px 20px 90px 20px;
+    margin: 50px 20px 90px 20px;
     padding: 0;
 }
 
@@ -65,7 +65,7 @@ body {
 
 li {
     padding: 10px 0;
-    width: 650px;
+    width: 520px;
     border: 1px solid #b8e8e8;
     float: left;
     clear: left;
@@ -83,15 +83,15 @@ li span {
 }
 
 #events li span.date{
-    width: 100px;
+    width: 80px;
 }
 
 #events li span.time{
-    width: 100px;
+    width: 80px;
 }
 
 #events li span.summary{
-    width: 350px;
+    width: 280px;
 }
 
 li.both {
@@ -108,9 +108,9 @@ li.eric {
 }
 
 #tasks li span.due{
-    width: 100px;
+    width: 80px;
 }
 
 #tasks li span.title{
-    width: 400px;
+    width: 320px;
 }

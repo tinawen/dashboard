@@ -37,6 +37,5 @@ def picture():
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
 if __name__ == "__main__":
-    app.run()
-    # app.debug = True
-    # app.run('0.0.0.0')
+    app.debug = True
+    app.run('0.0.0.0')

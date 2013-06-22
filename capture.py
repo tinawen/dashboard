@@ -80,12 +80,15 @@ def vacuum():
         yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
         # check if picture is too old
         if t < yesterday:
-            os.remove('%s%s'% (WEBCAM_PICTURE_FOLDER, f))
-            print "removing ", '%s%s'% (WEBCAM_PICTURE_FOLDER, f)
-            # remove from dropbox
-            client = authenticate_to_dropbox()
-            response = client.file_delete(f)
-            print "deleted: ", response
+            try:
+                os.remove('%s%s'% (WEBCAM_PICTURE_FOLDER, f))
+                print "removing ", '%s%s'% (WEBCAM_PICTURE_FOLDER, f)
+                # remove from dropbox
+                client = authenticate_to_dropbox()
+                response = client.file_delete(f)
+                print "deleted from dropbox: ", response
+            except:
+                print "can't remove file %s", f
 
 class StoredSession(session.DropboxSession):
     """a wrapper around DropboxSession that stores a token to a file on disk"""
@@ -94,7 +97,6 @@ class StoredSession(session.DropboxSession):
         try:
             stored_creds = open(DROPBOX_TOKEN_FILE).read()
             self.set_token(*stored_creds.split('|'))
-            print "[loaded access token]"
         except IOError:
             pass # don't worry if it's not there
 
