@@ -10,6 +10,11 @@ import os
 from optparse import OptionParser
 import math
 from gapi import get_latitude_info
+import Image
+import numpy
+import sys
+import glob
+import ImageStat
 
 DROPBOX_SECRETS = '/home/tina/dropbox_secrets.json'
 DROPBOX_TOKEN_FILE = '/home/tina/dropbox_token_store.txt'
@@ -51,6 +56,11 @@ def authenticate_to_dropbox():
     except IOError as e:
         print "can't read dropbox secret file"
 
+def brightness(image_name):
+   im = Image.open(image_name).convert('L')
+   stat = ImageStat.Stat(im)
+   return stat.mean[0]
+
 def take_picture():
     pygame.camera.init()
     cam = pygame.camera.Camera("/dev/video0", (640, 480))
@@ -60,6 +70,36 @@ def take_picture():
     full_file_name = '%s%s' % (WEBCAM_PICTURE_FOLDER, file_name)
     pygame.image.save(image, full_file_name)
     cam.stop()
+
+    if (brightness(full_file_name) < 50): # too dark
+        os.remove(full_file_name)
+        print "not bright enough, abort uploading image"
+        return
+    # detect whether to upload by image diff
+    files = filter(os.path.isfile, glob.glob(WEBCAM_PICTURE_FOLDER + "*"))
+    img1 = None
+    if len(files) >= 2:
+        files.sort(key=lambda x: os.path.getmtime(x))
+        # -1 is the one we just took
+        most_recent_file_name = os.path.basename(files[len(files)-2])
+
+        img1 = Image.open('%s%s' % (WEBCAM_PICTURE_FOLDER, most_recent_file_name))
+    img2 = Image.open(full_file_name)
+
+    if img1:
+        if img1.size != img2.size or img1.getbands() != img2.getbands():
+            return
+
+        diff = 0
+        for band_index, band in enumerate(img1.getbands()):
+            m1 = numpy.array([p[band_index] for p in img1.getdata()]).reshape(*img1.size)
+            m2 = numpy.array([p[band_index] for p in img2.getdata()]).reshape(*img2.size)
+            diff += numpy.sum(numpy.abs(m1-m2))
+        if diff < 4500000:
+            os.remove(full_file_name)
+            print "not different enough, abort uploading image"
+            return
+
     # upload to dropbox
     client = authenticate_to_dropbox()
     f = open(full_file_name)
@@ -146,7 +186,7 @@ if __name__ == '__main__':
     if options.vacuum:
         vacuum()
     elif options.capture:
-        take_picture_if_not_at_home()
+        take_picture()
     elif options.range:
         print within_range()
     else:
